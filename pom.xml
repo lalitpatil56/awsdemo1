@@ -2,15 +2,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-	
 
     <groupId>com.example</groupId>
     <artifactId>myapp</artifactId>
     <version>1.0-SNAPSHOT</version>
-	<packaging>war</packaging>
-
+    <packaging>war</packaging>
 
     <dependencies>
+        <!-- Spring Boot Web dependency for REST APIs, etc. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Boot dependency for running the app as a WAR file (for Tomcat) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Example dependency -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -18,5 +29,35 @@
             <version>3.12.0</version>
         </dependency>
     </dependencies>
-</project>
 
+    <build>
+        <plugins>
+            <!-- Spring Boot Maven Plugin for running and packaging the app -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- Maven WAR plugin for packaging as a WAR file -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!-- Docker Maven Plugin for creating Docker images (optional) -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <imageName>your-docker-image-name</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
