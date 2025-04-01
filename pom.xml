@@ -6,46 +6,32 @@
     <groupId>com.example</groupId>
     <artifactId>myapp</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!-- Spring Boot Web dependency for REST APIs, etc. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.7.10</version> <!-- Add the Spring Boot version -->
         </dependency>
 
-        <!-- Spring Boot dependency for running the app as a WAR file (for Tomcat) -->
+        <!-- Spring Boot dependency for running the app as a JAR file (without an embedded server like Tomcat) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
-        </dependency>
-
-        <!-- Example dependency -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version>
+            <version>2.7.10</version> <!-- Add the Spring Boot version -->
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Spring Boot Maven Plugin for running and packaging the app -->
+            <!-- Spring Boot Maven Plugin for building JAR -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-            <!-- Maven WAR plugin for packaging as a WAR file -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.1</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
+                <version>2.7.10</version> <!-- Add the Spring Boot plugin version -->
             </plugin>
         </plugins>
     </build>
